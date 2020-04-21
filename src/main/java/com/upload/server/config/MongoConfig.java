@@ -14,7 +14,7 @@ import com.mongodb.reactivestreams.client.MongoClients;
 
 
 @Configuration
-@EnableReactiveMongoRepositories(basePackages = "com.example.dao")
+@EnableReactiveMongoRepositories(basePackages = "com.upload.server.repository")
 public class MongoConfig extends AbstractReactiveMongoConfiguration{
 	@Value("${port}")
 	private String port;
