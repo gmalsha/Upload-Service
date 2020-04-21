@@ -10,9 +10,6 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 import com.mongodb.reactivestreams.client.MongoClient;
 import com.mongodb.reactivestreams.client.MongoClients;
 
-
-
-
 @Configuration
 @EnableReactiveMongoRepositories(basePackages = "com.upload.server.repository")
 public class MongoConfig extends AbstractReactiveMongoConfiguration{
@@ -20,21 +17,19 @@ public class MongoConfig extends AbstractReactiveMongoConfiguration{
 	private String port;
 	@Value("${dbname}")
 	private String dbName;
-	
+
 	@Override
 	protected String getDatabaseName() {
 		System.out.println(dbName);
 		return dbName;
 	}
 	public MongoClient reactiveMongoClient(){
-		System.out.println("mongo client created");
 		return MongoClients.create();
-		
+
 	}
-    @Bean
-    public ReactiveMongoTemplate reactiveMongoTemplate() {
-    	System.out.println("ReactiveMongoTemplate bean created");
-        return new ReactiveMongoTemplate(reactiveMongoClient(), getDatabaseName());
-    }
+	@Bean
+	public ReactiveMongoTemplate reactiveMongoTemplate() {
+		return new ReactiveMongoTemplate(reactiveMongoClient(), getDatabaseName());
+	}
 
 }
